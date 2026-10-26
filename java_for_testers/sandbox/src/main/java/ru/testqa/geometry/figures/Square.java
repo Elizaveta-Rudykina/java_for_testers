@@ -1,15 +1,21 @@
 package ru.testqa.geometry.figures;
 
 public class Square {
-    public static void printSquareArea(double a) {
-        System.out.println(String.format("Площадь квадрата со стороной %f = %f", a, area(a)));
+    private double side;
+
+    public Square(double side) {
+        this.side = side;
     }
 
-    public static double area(double a) {
-        return a * a;
+    public double area() {
+        return this.side * this.side;
     }
 
-    public static double perimeter(double a) {
-        return a * 4;
+    public static void printSquareArea(Square square) {
+        System.out.printf("Площадь квадрата со стороной %f = %f %n", square.side, square.area());
+    }
+
+    public double perimeter() {
+        return this.side * 4;
     }
 }
