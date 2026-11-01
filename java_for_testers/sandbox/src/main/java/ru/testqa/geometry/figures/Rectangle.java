@@ -1,6 +1,12 @@
 package ru.testqa.geometry.figures;
 
-public class Rectangle {
+public record Rectangle(double a, double b) {
+
+    public Rectangle {
+        if(a < 0 || b < 0) {
+            throw new IllegalArgumentException("Rectangle sides should be non-negative");
+        }
+    }
     public static void printRectangleArea(double a, double b) {
         System.out.println("Площадь прямоугольника со сторонами " + a + " и " + b + " = " + rectangleArea(a, b));
     }
