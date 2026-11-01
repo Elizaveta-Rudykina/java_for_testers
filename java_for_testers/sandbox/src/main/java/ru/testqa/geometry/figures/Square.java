@@ -1,13 +1,11 @@
 package ru.testqa.geometry.figures;
 
-public class Square {
-    private double side;
+public record Square (double side) {
 
-    public Square(double side) {
+    public Square {
         if(side < 0) {
             throw new IllegalArgumentException("Square side should be non-negative");
         }
-        this.side = side;
     }
 
     public double area() {
