@@ -45,5 +45,19 @@ public class TriangleTests {
 
         }
     }
+
+    @Test
+    void testEquality() {
+        Triangle tr1 = new Triangle(5.0, 10.0, 7.0);
+        Triangle tr2 = new Triangle(5.0, 10.0, 7.0);
+        Assertions.assertEquals(tr1, tr2);
+    }
+
+    @Test
+    void testEquality2() {
+        Triangle tr1 = new Triangle(5.0, 10.0, 7.0);
+        Triangle tr2 = new Triangle(10.0, 7.0, 5.0);
+        Assertions.assertEquals(tr1, tr2);
+    }
 }
 
