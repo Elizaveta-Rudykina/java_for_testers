@@ -15,5 +15,35 @@ public class TriangleTests {
         Triangle tr = new Triangle(5.0, 10.0, 7.0);
         Assertions.assertEquals(Math.sqrt(264), tr.area());
     }
+
+    @Test
+    void cannotCreateTriangleWithNegativeSide() {
+        try{
+            Triangle tr = new Triangle(-5.0, 10.0, 7.0);
+            Assertions.fail();
+        } catch (IllegalArgumentException iae) {
+
+        }
+    }
+
+    @Test
+    void cannotCreateTriangleWithNegativeSides() {
+        try{
+            Triangle tr = new Triangle(-5.0, -10.0, -7.0);
+            Assertions.fail();
+        } catch (IllegalArgumentException iae) {
+
+        }
+    }
+
+    @Test
+    void cannotCreateTriangleWithoutInequality() {
+        try{
+            Triangle tr = new Triangle(5.0, 10.0, 4.0);
+            Assertions.fail();
+        } catch (IllegalArgumentException iae) {
+
+        }
+    }
 }
 
