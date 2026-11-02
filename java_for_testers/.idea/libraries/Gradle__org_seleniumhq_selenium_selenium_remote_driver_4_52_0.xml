@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: org.seleniumhq.selenium:selenium-remote-driver:4.52.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.seleniumhq.selenium" artifactId="selenium-remote-driver" version="4.52.0" baseVersion="4.52.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-remote-driver/4.52.0/dc02a04fc6ad2d277f078f0f1efa424fe1faa3a1/selenium-remote-driver-4.52.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-remote-driver/4.52.0/7c880976fb9b8e47723247526cc9378d62376cb5/selenium-remote-driver-4.52.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
