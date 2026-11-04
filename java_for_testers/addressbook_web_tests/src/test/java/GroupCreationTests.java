@@ -11,7 +11,7 @@ public class GroupCreationTests {
 
     @BeforeEach
     public void setUp() {
-        System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "geckodriver.exe"); //указываю путь к драйверу на пк, так как автоматом не подгружается
 
         if(driver == null) { //перед каждым тестом проверяется открыт ли браузер, если да, то заново не открываем
             driver = new FirefoxDriver();
