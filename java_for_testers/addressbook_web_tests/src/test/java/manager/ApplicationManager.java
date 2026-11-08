@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class ApplicationManager {
@@ -13,9 +14,15 @@ public class ApplicationManager {
 
     private GroupHelper groups;
 
-    public void init() {
+    public void init(String browser) {
         if(driver == null) { //перед каждым тестом проверяется открыт ли браузер, если да, то заново не открываем
-            driver = new FirefoxDriver();
+            if(browser.equals("firefox")) {
+                driver = new FirefoxDriver();
+            } else if(browser.equals("chrome")) {
+                driver = new ChromeDriver();
+            } else {
+                throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
+            }
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit)); //после завершения всех тестов закрывает браузер, вместо постусловия
 
             driver.get("http://localhost/addressbook/");
