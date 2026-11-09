@@ -8,11 +8,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class ApplicationManager {
+
     protected WebDriver driver;
 
     private LoginHelper session;
 
     private GroupHelper groups;
+
+    private ContactHelper contacts;
 
     public void init(String browser) {
         if(driver == null) { //перед каждым тестом проверяется открыт ли браузер, если да, то заново не открываем
