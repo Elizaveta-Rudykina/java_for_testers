@@ -9,7 +9,7 @@ public class GroupHelper extends HelperBase {
         super(manager);
     }
 
-    public void openGroupPage() {
+    public void openGroupsPage() {
         if (!manager.isElementPresent(By.name("new"))) {
             click(By.linkText("groups"));
         }
@@ -17,12 +17,12 @@ public class GroupHelper extends HelperBase {
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isGroupPresent() {
-        openGroupPage();
+        openGroupsPage();
         return manager.isElementPresent(By.name("selected[]"));
     }
 
     public void createGroup(GroupData group) {
-        openGroupPage();
+        openGroupsPage();
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
@@ -30,14 +30,14 @@ public class GroupHelper extends HelperBase {
     }
 
     public void removeGroup() {
-        openGroupPage();
+        openGroupsPage();
         selectGroup();
         removeSelectedGroup();
         returnToGroupsPage();
     }
 
     public void modifyGroup(GroupData modifiedGroup) {
-        openGroupPage();
+        openGroupsPage();
         selectGroup();
         initGroupModification();
         fillGroupForm(modifiedGroup);

@@ -1,6 +1,10 @@
 package manager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HelperBase {
 
@@ -18,5 +22,14 @@ public class HelperBase {
         click(locator);
         manager.driver.findElement(locator).clear();
         manager.driver.findElement(locator).sendKeys(text);
+    }
+
+    protected void dropdownSelect(By locator, String name, String option) {
+        click(locator);
+
+        WebDriverWait wait = new WebDriverWait(manager.driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//option[. = \"" + option + "\"]")));
+
+        manager.driver.findElement(By.xpath("//select[@name='%s']/option[. = \"%s\"]".formatted(name, option))).click();
     }
 }

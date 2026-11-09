@@ -48,6 +48,13 @@ public class ApplicationManager {
         return groups;
     }
 
+    public ContactHelper contacts() {
+        if(contacts == null) {
+            contacts = new ContactHelper(this);
+        }
+        return contacts;
+    }
+
     public boolean isElementPresent(By locator) { //метод, который проверяет есть ли на странице такой элемент
         try{
             driver.findElement(locator); //ищем элемент по переданному параметру
