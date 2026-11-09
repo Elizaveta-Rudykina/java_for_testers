@@ -12,4 +12,15 @@ public class ContactCreationTests extends TestBase {
                 new Dates("5", "April", "1684", "7", "July", "1700"),
                 new AdditionalInfo( "government", "Group name", "C:\\Users\\user\\Pictures\\Screenshots\\Eren_reveals_his_cut_palm.png")));
     }
+
+    @Test
+    void canCreateContactWithNoData() {
+        app.contacts().createContact(new ContactData());
+    }
+
+    @Test
+    void canCreateContactWithFullNameOnly() {
+        app.contacts().createContact(new ContactData().withIdentity(new Identity(
+                "Eren", "Grigorievich", "Egar", "", "")));
+    }
 }

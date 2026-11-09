@@ -11,6 +11,9 @@ public record Identity(
         String nickName,
         String title
 ) {
+    public Identity() {
+        this("", "", "", "", "");
+    }
     public Identity withFirstName(String firstName) {
         return new Identity(firstName, this.middleName, this.lastName, this.nickName, this.title);
     }

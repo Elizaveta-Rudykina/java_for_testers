@@ -14,6 +14,9 @@ public record Communication(
         String email3,
         String homepage
 ) {
+    public Communication() {
+        this("", "", "", "", "", "", "", "");
+    }
     public Communication withAddress (String address) {
         return new Communication(address, this.homePhone, this.mobilePhone, this.workPhone, this.email, this.email2, this.email3, this.homepage);
     }

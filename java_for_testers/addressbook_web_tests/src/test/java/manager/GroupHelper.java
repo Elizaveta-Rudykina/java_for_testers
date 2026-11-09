@@ -9,18 +9,6 @@ public class GroupHelper extends HelperBase {
         super(manager);
     }
 
-    public void openGroupsPage() {
-        if (!manager.isElementPresent(By.name("new"))) {
-            click(By.linkText("groups"));
-        }
-    }
-
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    public boolean isGroupPresent() {
-        openGroupsPage();
-        return manager.isElementPresent(By.name("selected[]"));
-    }
-
     public void createGroup(GroupData group) {
         openGroupsPage();
         initGroupCreation();
@@ -43,6 +31,18 @@ public class GroupHelper extends HelperBase {
         fillGroupForm(modifiedGroup);
         submitGroupModification();
         returnToGroupsPage();
+    }
+
+    public void openGroupsPage() {
+        if (!manager.isElementPresent(By.name("new"))) {
+            click(By.linkText("groups"));
+        }
+    }
+
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    public boolean isGroupPresent() {
+        openGroupsPage();
+        return manager.isElementPresent(By.name("selected[]"));
     }
 
     private void submitGroupCreation() {

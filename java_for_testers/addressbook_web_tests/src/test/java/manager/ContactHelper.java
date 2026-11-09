@@ -17,12 +17,11 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
-    private void returnToHomePage() {
-        click(By.linkText("home page"));
-    }
-
-    private void submitContactCreation() {
-       click(By.name("submit"));
+    public void removeContact() {
+        openHomePage();
+        selectContact();
+        removeSelectedContact();
+        returnToHomePage();
     }
 
     private void fillContactForm(ContactData contact) {
@@ -55,8 +54,33 @@ public class ContactHelper extends HelperBase {
             click(By.linkText("add new"));
         }
     }
+
     private void uploadPhoto(String path){
+        if(path == null  || path.isEmpty()){
+            return;
+        }
         WebElement uploadFile = manager.driver.findElement(By.name("photo"));
         uploadFile.sendKeys(path);
+    }
+
+    private void submitContactCreation() {
+        click(By.name("submit"));
+    }
+
+    private void selectContact() {
+        click(By.name("selected[]"));
+    }
+
+    private void removeSelectedContact() {
+        click(By.name("delete"));
+    }
+
+    public boolean isContactPresent() {
+        openHomePage();
+        return manager.isElementPresent(By.name("selected[]"));
+    }
+
+    private void returnToHomePage() {
+        click(By.linkText("home page"));
     }
 }

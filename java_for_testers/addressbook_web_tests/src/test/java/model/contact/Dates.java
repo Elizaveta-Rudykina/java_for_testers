@@ -8,6 +8,9 @@ public record Dates(
         String anniversaryMonth,
         String anniversaryYear
 ) {
+    public Dates() {
+        this("", "", "", "", "", "");
+    }
     public Dates withBirthDay(String birthDay) {
         return new Dates(birthDay, this.birthMonth, this.birthYear, this.anniversaryDay, this.anniversaryMonth, this.anniversaryYear);
     }

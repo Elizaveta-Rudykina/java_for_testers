@@ -6,6 +6,10 @@ public record ContactData(
         Dates dates,
         AdditionalInfo additionalInfo
 ) {
+    public ContactData() {
+        this(new Identity(), new Communication(), new Dates(), new AdditionalInfo());
+    }
+
     public ContactData withIdentity(Identity identity) {
         return new ContactData(identity, this.communication, this.dates, this.additionalInfo);
     }
