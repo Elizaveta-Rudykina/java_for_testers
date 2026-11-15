@@ -20,7 +20,7 @@ public class TestBase {
 
     }
 
-    public String randomString(int n) {
+    public static String randomString(int n) {
         Random rnd = new Random();
         String result = "";
         for(int i=0; i<n; i++) {

@@ -3,42 +3,57 @@ package tests;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
 
 public class GroupCreationTests extends TestBase {
 
-    @Test
-    public void canCreateGroup() {
-        int groupCount = app.groups().getCount();
-        app.groups().createGroup(new GroupData("Group name", "Group header", "Group footer"));
-        int newgroupCount = app.groups().getCount();
-        Assertions.assertEquals(groupCount+1, newgroupCount);
-    }
+    public static List<GroupData> groupProvider() { //должен быть всегда static
+        var result = new ArrayList<GroupData>();
+        for(var name : List.of("", "group name")) { //вложенные циклы, проверяют все возможные варианты
+            for(var header : List.of("", "group header")) {
+                for(var footer : List.of("", "group footer")) {
+                    result.add(new GroupData(name, header, footer));
+                }
 
-    @Test
-    public void canCreateGroupWithEmptyName() {
-        int groupCount = app.groups().getCount();
-        app.groups().createGroup(new GroupData());
-        int newgroupCount = app.groups().getCount();
-        Assertions.assertEquals(groupCount+1, newgroupCount);
-    }
-
-    @Test
-    public void canCreateGroupWithNameOnly() {
-        int groupCount = app.groups().getCount();
-        app.groups().createGroup(new GroupData().withName("Some name"));
-        int newgroupCount = app.groups().getCount();
-        Assertions.assertEquals(groupCount+1, newgroupCount);
-    }
-
-    @Test
-    public void canCreateMultiplyGroups() {
-        int groupCount = app.groups().getCount();
-        int n = 5;
-        for(int i=0; i<n; i++) {
-            app.groups().createGroup(new GroupData(randomString(i), "Group header", "Group footer"));
+            }
         }
+        for(int i=0; i<5; i++) {
+            result.add(new GroupData(randomString(i*10), randomString(i*10), randomString(i*10)));
+        }
+        return result;
+    }
 
+    public static List<GroupData> negativeGroupProvider() {
+        var result = new ArrayList<GroupData>(List.of(new GroupData("group name'", "", "")));
+        return result;
+    }
+
+    /* убрали тесты canCreateGroup, canCreateGroupWithEmptyName и canCreateGroupWithNameOnly,
+      потому что они теперь проверяются в одном тесте canCreateMultipleGroups с использованием разных параметров
+    */
+
+    @ParameterizedTest
+    @MethodSource("groupProvider")
+    public void canCreateMultiplyGroups(GroupData group) {
+        int groupCount = app.groups().getCount();
+        app.groups().createGroup(group);
         int newgroupCount = app.groups().getCount();
-        Assertions.assertEquals(groupCount + n, newgroupCount);
+        Assertions.assertEquals(groupCount + 1, newgroupCount);
+    }
+
+    @ParameterizedTest
+    @MethodSource("negativeGroupProvider")
+    public void cannotCreateGroup(GroupData group) {
+        int groupCount = app.groups().getCount();
+        app.groups().createGroup(group);
+        int newgroupCount = app.groups().getCount();
+        Assertions.assertEquals(groupCount, newgroupCount);
     }
 }
