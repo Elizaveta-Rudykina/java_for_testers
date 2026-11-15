@@ -55,6 +55,18 @@ public class ContactHelper extends HelperBase {
         }
     }
 
+    protected void dropdownSelect(By locator, String name, String option) {
+        if(option == null || option.isEmpty()) {
+            return;
+        }
+        click(locator);
+        if(!manager.isElementPresent(By.xpath("//select[@name='%s']/option[. = \"%s\"]".formatted(name, option)))) {
+            manager.driver.findElement(By.xpath("//select[@name='new_group']/option[. = '[none]']")).click();
+        } else {
+            manager.driver.findElement(By.xpath("//select[@name='%s']/option[. = \"%s\"]".formatted(name, option))).click();
+        }
+    }
+
     private void uploadPhoto(String path){
         if(path == null  || path.isEmpty()){
             return;
@@ -82,5 +94,10 @@ public class ContactHelper extends HelperBase {
 
     private void returnToHomePage() {
         click(By.linkText("home page"));
+    }
+
+    public int getCount() {
+        openHomePage();
+        return manager.driver.findElements(By.name("selected[]")).size();
     }
 }

@@ -20,14 +20,6 @@ public class HelperBase {
         }
     }
 
-    protected void dropdownSelect(By locator, String name, String option) {
-        if(option == null || option.isEmpty()) {
-            return;
-        }
-        click(locator);
-        manager.driver.findElement(By.xpath("//select[@name='%s']/option[. = \"%s\"]".formatted(name, option))).click();
-    }
-
     protected void click(By locator) {
         manager.driver.findElement(locator).click();
     }
