@@ -1,4 +1,4 @@
-package ru.testqa.geometry.figures;
+package ru.stqa.geometry.figures;
 
 public record Square (double side) {
 

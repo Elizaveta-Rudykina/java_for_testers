@@ -1,7 +1,7 @@
-package ru.testqa.geometry;
+package ru.stqa.testqa.geometry;
 
-import ru.testqa.geometry.figures.Rectangle;
-import ru.testqa.geometry.figures.Square;
+import ru.stqa.geometry.figures.Rectangle;
+import ru.stqa.geometry.figures.Square;
 
 public class Geometry {
     static void main(String[] args) {
