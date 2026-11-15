@@ -1,16 +1,17 @@
 package tests;
 
-import model.contact.*;
+import model.*;
 import org.junit.jupiter.api.Test;
 
 public class ContactCreationTests extends TestBase {
 
     @Test
     public void canCreateContact() {
-        app.contacts().createContact(new ContactData(new Identity("Romanova", "Ekaterina", "Alekseevna", "katya", "Mrs."),
-                new Communication("Winter Palace", "275894", "786976668593", "734589", "katya", "katya2", "katya3", "perevorot.ru"),
-                new Dates("5", "April", "1684", "7", "July", "1700"),
-                new AdditionalInfo( "government", "Group name", "C:\\Users\\user\\Pictures\\Screenshots\\Eren_reveals_his_cut_palm.png")));
+        app.contacts().createContact(new ContactData("Romanova", "Ekaterina", "Alekseevna",
+                "katya", "C:\\Users\\user\\Pictures\\Screenshots\\Eren_reveals_his_cut_palm.png",
+                "Mrs.", "government", "Winter Palace", "275894", "786976668593",
+                "734589", "katya", "katya2", "katya3", "perevorot.ru",
+                "5", "April", "1684", "7", "July", "1700", "Group name"));
     }
 
     @Test
@@ -20,7 +21,12 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     void canCreateContactWithFullNameOnly() {
-        app.contacts().createContact(new ContactData().withIdentity(new Identity(
-                "Eren", "Grigorievich", "Egar", "", "")));
+        app.contacts().createContact(new ContactData().withFullNameOnly(
+                "Eren", "Grigorievich", "Egar"));
+    }
+
+    @Test
+    void canCreateContactWithNameAndPhoneOnly() {
+        app.contacts().createContact(new ContactData().withNameAndPhoneOnly("Elisabeth", "79505050505"));
     }
 }

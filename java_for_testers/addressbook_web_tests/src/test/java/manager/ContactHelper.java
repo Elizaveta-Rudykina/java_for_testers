@@ -1,6 +1,6 @@
 package manager;
 
-import model.contact.ContactData;
+import model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -25,28 +25,28 @@ public class ContactHelper extends HelperBase {
     }
 
     private void fillContactForm(ContactData contact) {
-        type(By.name("firstname"), contact.identity().firstName());
-        type(By.name("middlename"), contact.identity().middleName());
-        type(By.name("lastname"), contact.identity().lastName());
-        type(By.name("nickname"), contact.identity().nickName());
-        type(By.name("title"), contact.identity().title());
-        type(By.name("address"), contact.communication().address());
-        type(By.name("home"), contact.communication().homePhone());
-        type(By.name("mobile"), contact.communication().mobilePhone());
-        type(By.name("work"), contact.communication().workPhone());
-        type(By.name("email"), contact.communication().email());
-        type(By.name("email2"), contact.communication().email2());
-        type(By.name("email3"), contact.communication().email3());
-        type(By.name("homepage"), contact.communication().homepage());
-        dropdownSelect(By.name("bday"), "bday", contact.dates().birthDay());
-        dropdownSelect(By.name("bmonth"), "bmonth", contact.dates().birthMonth());
-        type(By.name("byear"), contact.dates().birthYear());
-        dropdownSelect(By.name("aday"), "aday", contact.dates().anniversaryDay());
-        dropdownSelect(By.name("amonth"), "amonth", contact.dates().anniversaryMonth());
-        type(By.name("ayear"), contact.dates().anniversaryYear());
-        uploadPhoto(contact.additionalInfo().photoUrl());
-        type(By.name("company"), contact.additionalInfo().company());
-        dropdownSelect(By.name("new_group"), "new_group", contact.additionalInfo().group());
+        type(By.name("firstname"), contact.firstName());
+        type(By.name("middlename"), contact.middleName());
+        type(By.name("lastname"), contact.lastName());
+        type(By.name("nickname"), contact.nickName());
+        type(By.name("title"), contact.title());
+        type(By.name("address"), contact.address());
+        type(By.name("home"), contact.homePhone());
+        type(By.name("mobile"), contact.mobilePhone());
+        type(By.name("work"), contact.workPhone());
+        type(By.name("email"), contact.email());
+        type(By.name("email2"), contact.email2());
+        type(By.name("email3"), contact.email3());
+        type(By.name("homepage"), contact.homepage());
+        dropdownSelect(By.name("bday"), "bday", contact.birthDay());
+        dropdownSelect(By.name("bmonth"), "bmonth", contact.birthMonth());
+        type(By.name("byear"), contact.birthYear());
+        dropdownSelect(By.name("aday"), "aday", contact.anniversaryDay());
+        dropdownSelect(By.name("amonth"), "amonth", contact.anniversaryMonth());
+        type(By.name("ayear"), contact.anniversaryYear());
+        uploadPhoto(contact.photo());
+        type(By.name("company"), contact.company());
+        dropdownSelect(By.name("new_group"), "new_group", contact.group());
     }
 
     private void openNewContactPage() {
