@@ -30,4 +30,15 @@ public class GroupCreationTests extends TestBase {
         Assertions.assertEquals(groupCount+1, newgroupCount);
     }
 
+    @Test
+    public void canCreateMultiplyGroups() {
+        int groupCount = app.groups().getCount();
+        int n = 5;
+        for(int i=0; i<n; i++) {
+            app.groups().createGroup(new GroupData(randomString(i), "Group header", "Group footer"));
+        }
+
+        int newgroupCount = app.groups().getCount();
+        Assertions.assertEquals(groupCount + n, newgroupCount);
+    }
 }
