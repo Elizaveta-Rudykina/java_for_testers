@@ -29,7 +29,7 @@ public class ApplicationManager {
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit)); //после завершения всех тестов закрывает браузер, вместо постусловия
 
             driver.get("http://localhost/addressbook/");
-            driver.manage().window().setSize(new Dimension(1203, 692));
+            driver.manage().window().setSize(new Dimension(1366, 768));
             session().login("admin", "secret");
         }
     }
