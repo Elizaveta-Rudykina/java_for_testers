@@ -21,6 +21,14 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
+    public void modifyContact(ContactData contact, ContactData modifiedContact) {
+        openHomePage();
+        initContactModification(contact);
+        fillContactForm(modifiedContact);
+        submitContactModification();
+        returnToHomePage();
+    }
+
     public void removeContact(ContactData contact) {
         openHomePage();
         selectContact(contact);
@@ -94,6 +102,11 @@ public class ContactHelper extends HelperBase {
         uploadFile.sendKeys(path);
     }
 
+    public int getCount() {
+        openHomePage();
+        return manager.driver.findElements(By.name("selected[]")).size(); //возвращает размер коллекции найденных эл-ов
+    }
+
     private void submitContactCreation() {
         click(By.name("submit"));
     }
@@ -102,21 +115,19 @@ public class ContactHelper extends HelperBase {
         click(By.cssSelector("input[id='%s']".formatted(contact.id())));
     }
 
+    private void initContactModification(ContactData contact) {
+        click(By.xpath("//a[@href='edit.php?id=%s']".formatted(contact.id())));
+    }
+
+    private void submitContactModification() {
+        click(By.name("update"));
+    }
+
     private void removeSelectedContact() {
         click(By.name("delete"));
     }
 
-    public boolean isContactPresent() {
-        openHomePage();
-        return manager.isElementPresent(By.name("selected[]"));
-    }
-
     private void returnToHomePage() {
         click(By.linkText("home page"));
-    }
-
-    public int getCount() {
-        openHomePage();
-        return manager.driver.findElements(By.name("selected[]")).size();
     }
 }

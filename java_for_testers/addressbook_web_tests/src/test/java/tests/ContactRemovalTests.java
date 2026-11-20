@@ -12,13 +12,9 @@ public class ContactRemovalTests extends TestBase {
 
     @Test
     void canRemoveContact() {
-        if(! app.contacts().isContactPresent()) {
-            app.contacts().createContact(new ContactData("", "Romanova", "Ekaterina",
-                    "Alekseevna", "katya", "C:\\Users\\user\\Pictures\\Screenshots\\Eren_reveals_his_cut_palm.png",
-                    "Mrs.", "government", "Winter Palace", "275894",
-                    "786976668593", "734589", "katya", "katya2", "katya3",
-                    "perevorot.ru", "5", "April", "1684", "7",
-                    "July", "1700", "Group name"));
+        if(app.contacts().getCount() == 0) {
+            app.contacts().createContact(new ContactData().withFullName("Eren",
+                    "Grigorievich", "Egar"));
         }
         List<ContactData> oldContacts = app.contacts().getList();
         int index = new Random().nextInt(oldContacts.size());
