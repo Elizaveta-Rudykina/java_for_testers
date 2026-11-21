@@ -3,6 +3,8 @@ package tests;
 import manager.ApplicationManager;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.Random;
 
 public class TestBase {
@@ -44,11 +46,10 @@ public class TestBase {
         return months[rnd.nextInt(months.length)];
     }
 
-    public static String randomPhotoPath() {
-        String[] photos = {"src/test/resources/images/Eren.png",
-                "src/test/resources/images/Akame.png",
-                "src/test/resources/images/Esdeath.png"};
+    public static String randomPath(String dir) {
+        var fileNames = new File(dir).list(); //метод list возвращ массив имён файлов в заданной директории
         Random rnd = new Random();
-        return photos[rnd.nextInt(photos.length)];
+        int index = rnd.nextInt(fileNames.length);
+        return Paths.get(dir, fileNames[index]).toString();
     }
 }

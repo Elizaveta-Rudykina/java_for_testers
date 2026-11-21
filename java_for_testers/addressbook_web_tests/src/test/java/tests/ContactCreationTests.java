@@ -15,12 +15,12 @@ public class ContactCreationTests extends TestBase {
         var result = new ArrayList<ContactData>(List.of(
                 new ContactData().withFullName("Eren", "Grigorievich", "Egar"),
                 new ContactData().withFirstAndLastNames("Elisabeth", "Chapman"),
-                new ContactData().withPhoto(""),
+                new ContactData().withPhoto(randomPath("src/test/resources/images")),
                 new ContactData()));
 
         for(int i=0; i<5; i++) {
             result.add(new ContactData("", randomString(i*3), randomString(i*3), randomString(i*3),
-                    randomPhotoPath(), randomString(i*3), randomString(i*3),
+                    randomPath("src/test/resources/images"), randomString(i*3), randomString(i*3),
                     randomString(i*3), randomString(i*3), randomDayOfMonth(),
                     randomMonth(), randomYear(), randomString(i*3)));
         }
