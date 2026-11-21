@@ -15,28 +15,17 @@ public class ContactCreationTests extends TestBase {
         var result = new ArrayList<ContactData>(List.of(
                 new ContactData().withFullName("Eren", "Grigorievich", "Egar"),
                 new ContactData().withFirstAndLastNames("Elisabeth", "Chapman"),
+                new ContactData().withPhoto(""),
                 new ContactData()));
 
         for(int i=0; i<5; i++) {
             result.add(new ContactData("", randomString(i*3), randomString(i*3), randomString(i*3),
-                    randomString(i*3), randomPhotoPath(), randomString(i*3), randomString(i*3),
-                    randomString(i*3), randomString(i*3), randomString(i*3), randomString(i*3),
-                    randomString(i*3), randomString(i*3), randomString(i*3), randomString(i*3),
-                    randomDayOfMonth(), randomMonth(), randomYear(), randomDayOfMonth(),
+                    randomPhotoPath(), randomString(i*3), randomString(i*3),
+                    randomString(i*3), randomString(i*3), randomDayOfMonth(),
                     randomMonth(), randomYear(), randomString(i*3)));
         }
         return result;
     }
-
-    /*@Test
-    public void canCreateContact() {
-        app.contacts().createContact(new ContactData("Romanova", "Ekaterina", "Alekseevna",
-                "katya", "C:\\Users\\user\\Pictures\\Screenshots\\Eren_reveals_his_cut_palm.png",
-                "Mrs.", "government", "Winter Palace", "275894", "786976668593",
-                "734589", "katya", "katya2", "katya3", "perevorot.ru",
-                "5", "April", "1684", "7", "July", "1700", "Group name"));
-    }
-     */
 
     @ParameterizedTest
     @MethodSource("contactProvider")

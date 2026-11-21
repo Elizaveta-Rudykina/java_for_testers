@@ -1,10 +1,9 @@
 package manager;
 
 import model.ContactData;
-import model.GroupData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,24 +39,14 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contact.firstName());
         type(By.name("middlename"), contact.middleName());
         type(By.name("lastname"), contact.lastName());
-        type(By.name("nickname"), contact.nickName());
-        type(By.name("title"), contact.title());
         type(By.name("address"), contact.address());
-        type(By.name("home"), contact.homePhone());
         type(By.name("mobile"), contact.mobilePhone());
-        type(By.name("work"), contact.workPhone());
         type(By.name("email"), contact.email());
-        type(By.name("email2"), contact.email2());
-        type(By.name("email3"), contact.email3());
         type(By.name("homepage"), contact.homepage());
         dropdownSelect(By.name("bday"), "bday", contact.birthDay());
         dropdownSelect(By.name("bmonth"), "bmonth", contact.birthMonth());
         type(By.name("byear"), contact.birthYear());
-        dropdownSelect(By.name("aday"), "aday", contact.anniversaryDay());
-        dropdownSelect(By.name("amonth"), "amonth", contact.anniversaryMonth());
-        type(By.name("ayear"), contact.anniversaryYear());
-        uploadPhoto(contact.photo());
-        type(By.name("company"), contact.company());
+        attachPhoto(contact.photo());
         dropdownSelect(By.name("new_group"), "new_group", contact.group());
     }
 
@@ -94,12 +83,11 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    private void uploadPhoto(String path){
+    private void attachPhoto(String path){
         if(path == null  || path.isEmpty()){
             return;
         }
-        WebElement uploadFile = manager.driver.findElement(By.name("photo"));
-        uploadFile.sendKeys(path);
+        manager.driver.findElement(By.name("photo")).sendKeys(Paths.get(path).toAbsolutePath().toString());
     }
 
     public int getCount() {

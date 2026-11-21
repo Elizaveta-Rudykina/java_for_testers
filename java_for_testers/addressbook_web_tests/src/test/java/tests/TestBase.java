@@ -45,9 +45,9 @@ public class TestBase {
     }
 
     public static String randomPhotoPath() {
-        String[] photos = {"C:\\Users\\user\\Pictures\\Screenshots\\Eren_reveals_his_cut_palm.png",
-                "C:\\Users\\user\\Pictures\\Screenshots\\Akame.png",
-                "C:\\Users\\user\\Pictures\\Screenshots\\Esdeath.png"};
+        String[] photos = {"src/test/resources/images/Eren.png",
+                "src/test/resources/images/Akame.png",
+                "src/test/resources/images/Esdeath.png"};
         Random rnd = new Random();
         return photos[rnd.nextInt(photos.length)];
     }
