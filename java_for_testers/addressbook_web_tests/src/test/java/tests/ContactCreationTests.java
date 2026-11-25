@@ -1,5 +1,6 @@
 package tests;
 
+import common.CommonFunctions;
 import model.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,10 +20,10 @@ public class ContactCreationTests extends TestBase {
                 new ContactData()));
 
         for(int i=0; i<5; i++) {
-            result.add(new ContactData("", randomString(i*3), randomString(i*3), randomString(i*3),
-                    randomPath("src/test/resources/images"), randomString(i*3), randomString(i*3),
-                    randomString(i*3), randomString(i*3), randomDayOfMonth(),
-                    randomMonth(), randomYear(), randomString(i*3)));
+            result.add(new ContactData("", CommonFunctions.randomString(i*3), CommonFunctions.randomString(i*3), CommonFunctions.randomString(i*3),
+                    randomPath("src/test/resources/images"), CommonFunctions.randomString(i*3), CommonFunctions.randomString(i*3),
+                    CommonFunctions.randomString(i*3), CommonFunctions.randomString(i*3), randomDayOfMonth(),
+                    randomMonth(), randomYear(), CommonFunctions.randomString(i*3)));
         }
         return result;
     }

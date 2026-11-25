@@ -21,16 +21,6 @@ public class TestBase {
         app.init(System.getProperty("browser", "firefox"));
 
     }
-
-    public static String randomString(int n) {
-        Random rnd = new Random();
-        String result = "";
-        for(int i=0; i<n; i++) {
-            result += (char) ('a' + rnd.nextInt(26));
-        }
-        return result;
-    }
-
     public static String randomDayOfMonth() {
         return Integer.toString(new Random().nextInt(0, 32));
     }
