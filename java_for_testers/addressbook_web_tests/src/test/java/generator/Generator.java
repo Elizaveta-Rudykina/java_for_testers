@@ -3,6 +3,7 @@ package generator;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import model.GroupData;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.SerializationFeature;
@@ -56,13 +57,18 @@ public class Generator {
             ObjectMapper mapper = JsonMapper.builder() //маппер через builder, чтобы можно было добавить конфигурацию
                     .enable(SerializationFeature.INDENT_OUTPUT) //конфиг, который делает json более читабельным
                             .build();
-
-            //mapper.writeValue(new File(output), data);
-            String json = mapper.writeValueAsString(data);
+            String json = mapper.writeValueAsString(data); //разные способы, этот - с использованием потоков ввод-выв
             try(FileWriter writer = new FileWriter(output)) {
                 writer.write(json);
             } catch (IOException e) {
                 System.err.println("Данные не записаны в файл: " + e.getMessage()); }
+        } else if(format.equals("yaml")) {
+            var mapper = new YAMLMapper();
+            try {
+                mapper.writeValue(new File(output), data); //этот - чисто с использованием jackson, он сам всё делает
+            } catch (IOException e) {
+                System.err.println("Данные не записаны в файл: " + e.getMessage());
+            }
         } else{
             throw new IllegalArgumentException("Unknown format: " + format);
         }
