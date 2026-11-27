@@ -9,6 +9,8 @@ import tools.jackson.databind.SerializationFeature;
 import tools.jackson.databind.json.JsonMapper;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import static common.CommonFunctions.randomString;
 
@@ -48,6 +50,24 @@ public class Generator {
             throw new IllegalArgumentException("Unknown type: " + type);
         }
     }
+
+    private void save(Object data) {
+        if(format.equals("json")) {
+            ObjectMapper mapper = JsonMapper.builder() //маппер через builder, чтобы можно было добавить конфигурацию
+                    .enable(SerializationFeature.INDENT_OUTPUT) //конфиг, который делает json более читабельным
+                            .build();
+
+            //mapper.writeValue(new File(output), data);
+            String json = mapper.writeValueAsString(data);
+            try(FileWriter writer = new FileWriter(output)) {
+                writer.write(json);
+            } catch (IOException e) {
+                System.err.println("Данные не записаны в файл: " + e.getMessage()); }
+        } else{
+            throw new IllegalArgumentException("Unknown format: " + format);
+        }
+    }
+
     private Object generateGroups() {
         var result = new ArrayList<GroupData>();
         for(int i=0; i<count; i++) {
@@ -60,17 +80,5 @@ public class Generator {
     }
     private Object generateContacts() {
         return null;
-    }
-
-    private void save(Object data) {
-        if(format.equals("json")) {
-            ObjectMapper mapper = JsonMapper.builder() //маппер через builder, чтобы можно было добавить конфигурацию
-                    .enable(SerializationFeature.INDENT_OUTPUT) //конфиг, который делает json более читабельным
-                            .build();
-
-            mapper.writeValue(new File(output), data);
-        } else{
-            throw new IllegalArgumentException("Unknown format: " + format);
-        }
     }
 }
