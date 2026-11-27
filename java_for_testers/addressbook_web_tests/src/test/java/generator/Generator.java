@@ -8,6 +8,7 @@ import model.GroupData;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.SerializationFeature;
 import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.dataformat.xml.XmlMapper;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -69,6 +70,9 @@ public class Generator {
             } catch (IOException e) {
                 System.err.println("Данные не записаны в файл: " + e.getMessage());
             }
+        } else if(format.equals("xml")) { //если использовать xml, то в тесте нужно заменить объект mapper на XmlMapper
+            var mapper = new XmlMapper();
+            mapper.writeValue(new File(output), data);
         } else{
             throw new IllegalArgumentException("Unknown format: " + format);
         }
